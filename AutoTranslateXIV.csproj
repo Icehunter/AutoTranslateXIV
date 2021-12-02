@@ -46,6 +46,7 @@
         <PackageReference Include="DalamudPackager" Version="2.1.2" />
         <PackageReference Include="ILRepack" Version="2.1.0-beta1" GeneratePathProperty="true" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="TextCopy" Version="4.3.1" />
     </ItemGroup>
     <Target Name="ILRepack" AfterTargets="PostBuildEvent">
         <ItemGroup>

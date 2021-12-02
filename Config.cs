@@ -14,10 +14,14 @@ namespace AutoTranslateXIV {
     using Translation;
 
     public class Config : IPluginConfiguration {
+        public string AutomaticTranslateFrom { get; set; } = "Japanese";
+        public string AutomaticTranslateTo { get; set; } = "English";
         public string CognitiveServiceKey { get; set; } = string.Empty;
         public string CognitiveServiceRegion { get; set; } = string.Empty;
         public bool Enabled { get; set; } = true;
         public string GoogleServiceKey { get; set; } = string.Empty;
+        public string ManualTranslateFrom { get; set; } = "English";
+        public string ManualTranslateTo { get; set; } = "Japanese";
         public TranslationProvider TranslationProvider { get; set; } = TranslationProvider.Google;
         public int Version { get; set; } = 0;
     }

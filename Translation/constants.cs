@@ -9,10 +9,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace AutoTranslateXIV.Translation {
-    using System.Collections;
+    using System.Collections.Generic;
 
     public static class Constants {
-        public static Hashtable LanguageMap = new Hashtable {
+        public static SortedDictionary<string, string> LanguageMap = new SortedDictionary<string, string> {
             {
                 "Albanian", "sq"
             }, {
