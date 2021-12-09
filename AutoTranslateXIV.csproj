@@ -20,6 +20,10 @@
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <AssemblyName>AutoTranslateXIV</AssemblyName>
+        <Authors>Ryan Wilson</Authors>
+        <Company>SyndicatedLife</Company>
+        <Product>Copyright © 2007 - 2021 Ryan Wilson</Product>
+        <Description>Translates From A to B where A/B are set in config</Description>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       <OutputPath></OutputPath>
@@ -47,6 +51,9 @@
         <PackageReference Include="ILRepack" Version="2.1.0-beta1" GeneratePathProperty="true" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="TextCopy" Version="4.3.1" />
+    </ItemGroup>
+    <ItemGroup>
+	    <Content Include="images\icon.png" Link="images\icon.png" CopyToOutputDirectory="PreserveNewest" Visible="false" />
     </ItemGroup>
     <Target Name="ILRepack" AfterTargets="PostBuildEvent">
         <ItemGroup>
