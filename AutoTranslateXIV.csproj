@@ -47,10 +47,10 @@
         <None Remove="lib\**" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="DalamudPackager" Version="2.1.5" />
+        <PackageReference Include="DalamudPackager" Version="2.1.6" />
         <PackageReference Include="ILRepack" Version="2.1.0-beta1" GeneratePathProperty="true" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="TextCopy" Version="4.3.1" />
+        <PackageReference Include="TextCopy" Version="6.1.0" />
     </ItemGroup>
     <ItemGroup>
 	    <Content Include="images\icon.png" Link="images\icon.png" CopyToOutputDirectory="PreserveNewest" Visible="false" />
