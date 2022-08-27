@@ -154,7 +154,7 @@ namespace AutoTranslateXIV {
                                 continue;
                             }
 
-                            TranslationResult translationResult = this.GetTranslationResult(result.Message, Constants.LanguageMap[this._automaticTranslateFrom], Constants.LanguageMap[this._automaticTranslateTo]);
+                            TranslationResult translationResult = this.GetTranslationResult(result.Message, Constants.LanguageMap[this._automaticTranslateFrom], Constants.LanguageMap[this._automaticTranslateTo], true);
 
                             if (string.Equals(translationResult.Translated, translationResult.Original, StringComparison.OrdinalIgnoreCase)) {
                                 continue;
@@ -208,9 +208,9 @@ namespace AutoTranslateXIV {
             if (!ClientState.IsLoggedIn) { }
         }
 
-        public TranslationResult GetTranslationResult(string message, string fromLanguage, string toLanguage) {
+        public TranslationResult GetTranslationResult(string message, string fromLanguage, string toLanguage, bool detectFromLanguage) {
             try {
-                TranslationResult result = this.GetTranslationProvider()?.TranslateText(message, fromLanguage, toLanguage, this.IsInternational(message));
+                TranslationResult result = this.GetTranslationProvider()?.TranslateText(message, fromLanguage, toLanguage, detectFromLanguage);
 
                 if (result is null) {
                     return null;
@@ -333,15 +333,9 @@ namespace AutoTranslateXIV {
             return null;
         }
 
-        private bool IsInternational(string line) {
-            // 0x3040 -> 0x309F === Hirigana
-            // 0x30A0 -> 0x30FF === Katakana
-            // 0x4E00 -> 0x9FBF === Kanji
-            return line.Any(c => c >= 0x3040 && c <= 0x309F) || line.Any(c => c >= 0x30A0 && c <= 0x30FF) || line.Any(c => c >= 0x4E00 && c <= 0x9FBF);
-        }
-
         private void OnChatMessage(XivChatType type, uint senderid, ref SeString sender, ref SeString message, ref bool ishandled) {
-            var shouldTranslate = this._translateTypes.ContainsKey(type) && this.IsInternational(message.TextValue);
+            // var shouldTranslate = this._translateTypes.ContainsKey(type) && this.IsInternational(message.TextValue);
+            var shouldTranslate = this._translateTypes.ContainsKey(type);
 
             if (!shouldTranslate) {
                 return;

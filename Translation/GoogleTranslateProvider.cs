@@ -23,16 +23,16 @@ namespace AutoTranslateXIV.Translation {
             this._serviceKey = serviceKey;
         }
 
-        public TranslationResult TranslateText(string textToTranslate, string fromLanguage, string toLanguage, bool isInternational) {
+        public TranslationResult TranslateText(string textToTranslate, string fromLanguage, string toLanguage, bool detectFromLanguage) {
             TranslationResult result = new TranslationResult {
                 Original = textToTranslate,
             };
 
             try {
                 var url = string.Format(
-                    this._baseUrl, this._serviceKey, isInternational
-                                                         ? fromLanguage
-                                                         : "", toLanguage, textToTranslate);
+                    this._baseUrl, this._serviceKey, detectFromLanguage
+                                                         ? ""
+                                                         : fromLanguage, toLanguage, textToTranslate);
 
                 using HttpRequestMessage request = new HttpRequestMessage {
                     Method = HttpMethod.Post,

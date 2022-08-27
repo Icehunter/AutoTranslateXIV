@@ -31,16 +31,16 @@ namespace AutoTranslateXIV.Translation {
             this._region = region;
         }
 
-        public TranslationResult TranslateText(string textToTranslate, string fromLanguage, string toLanguage, bool isInternational) {
+        public TranslationResult TranslateText(string textToTranslate, string fromLanguage, string toLanguage, bool detectFromLanguage) {
             TranslationResult result = new TranslationResult {
                 Original = textToTranslate,
             };
 
             try {
                 var url = string.Format(
-                    _baseUrl, isInternational
-                                  ? fromLanguage
-                                  : this.DetectLanguage(textToTranslate), toLanguage);
+                    _baseUrl, detectFromLanguage
+                                  ? this.DetectLanguage(textToTranslate)
+                                  : fromLanguage, toLanguage);
 
                 Object[] body = {
                     new {

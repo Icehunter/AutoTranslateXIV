@@ -10,6 +10,6 @@
 
 namespace AutoTranslateXIV.Translation {
     public interface ITranslationProvider {
-        public TranslationResult TranslateText(string textToTranslate, string fromLanguage, string toLanguage, bool isInternational);
+        public TranslationResult TranslateText(string textToTranslate, string fromLanguage, string toLanguage, bool detectFromLanguage);
     }
 }
