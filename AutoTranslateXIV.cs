@@ -333,9 +333,20 @@ namespace AutoTranslateXIV {
             return null;
         }
 
+        private bool IsInternational(string line)
+        {
+            //// 0x0020 -> 0x007E === everything Latin based
+            //// 0x00A0 -> 0x00BF === supplement punctuation and symbols
+            //var excludesLatin = line.Any(c => c > 0x007E && c < 0x00A0 && c > 0x00BF);
+            //return (this._manualTranslateFrom == "en" || this._automaticTranslateFrom == "en") && !excludesLatin ? true : excludesLatin;
+            // 0x3040 -> 0x309F === Hirigana
+            // 0x30A0 -> 0x30FF === Katakana
+            // 0x4E00 -> 0x9FBF === Kanji
+            return line.Any(c => c >= 0x3040 && c <= 0x309F) || line.Any(c => c >= 0x30A0 && c <= 0x30FF) || line.Any(c => c >= 0x4E00 && c <= 0x9FBF);
+        }
+
         private void OnChatMessage(XivChatType type, uint senderid, ref SeString sender, ref SeString message, ref bool ishandled) {
-            // var shouldTranslate = this._translateTypes.ContainsKey(type) && this.IsInternational(message.TextValue);
-            var shouldTranslate = this._translateTypes.ContainsKey(type);
+            var shouldTranslate = this._translateTypes.ContainsKey(type) && this.IsInternational(message.TextValue);
 
             if (!shouldTranslate) {
                 return;
